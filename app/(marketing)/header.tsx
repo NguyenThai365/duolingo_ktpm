@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut, SignInButton, ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { Loader } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export const Header = () => {
     return (
@@ -17,15 +18,18 @@ export const Header = () => {
                 </ClerkLoading>
                 <ClerkLoaded>
                     <SignedIn>
-                        <UserButton />
+                        <UserButton 
+                            afterSignOutUrl="/"
+                        />
                     </SignedIn>
                     <SignedOut>
-                        <SignInButton
+                        <SignInButton 
                             mode="modal" 
-                            afterSignInUrl="/learn"
-
+                            fallbackRedirectUrl={"/learn"}
                         >
-
+                            <Button size="lg" variant="ghost">
+                                Login
+                            </Button>
                         </SignInButton>
                     </SignedOut>
                 </ClerkLoaded>
